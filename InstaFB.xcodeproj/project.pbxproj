@@ -13,6 +13,7 @@
 		D8FE181629811F2000400000 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8FE181429811F2000400000 /* Main.storyboard */; };
 		D8FE181829811F2100400000 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8FE181729811F2100400000 /* Assets.xcassets */; };
 		D8FE181B29811F2100400000 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8FE181929811F2100400000 /* LaunchScreen.storyboard */; };
+		D8FE182429815A0E00400000 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FE182329815A0E00400000 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		D8FE181729811F2100400000 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8FE181A29811F2100400000 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8FE181C29811F2100400000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D8FE182329815A0E00400000 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		D8FE180D29811F2000400000 /* InstaFB */ = {
 			isa = PBXGroup;
 			children = (
+				D8FE182229815A0100400000 /* Utils */,
 				D8FE180E29811F2000400000 /* AppDelegate.swift */,
 				D8FE181029811F2000400000 /* SceneDelegate.swift */,
 				D8FE181229811F2000400000 /* ViewController.swift */,
@@ -65,6 +68,14 @@
 				D8FE181C29811F2100400000 /* Info.plist */,
 			);
 			path = InstaFB;
+			sourceTree = "<group>";
+		};
+		D8FE182229815A0100400000 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D8FE182329815A0E00400000 /* Extensions.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +152,7 @@
 				D8FE181329811F2000400000 /* ViewController.swift in Sources */,
 				D8FE180F29811F2000400000 /* AppDelegate.swift in Sources */,
 				D8FE181129811F2000400000 /* SceneDelegate.swift in Sources */,
+				D8FE182429815A0E00400000 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
