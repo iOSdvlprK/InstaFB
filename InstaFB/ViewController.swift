@@ -6,15 +6,38 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseStorage
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(nil, action: #selector(handlePlusPhoto), for: .touchUpInside)
         return button
     }()
+    
+    @objc func handlePlusPhoto() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        present(imagePickerController, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            plusPhotoButton.setImage(editedImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            plusPhotoButton.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        plusPhotoButton.layer.cornerRadius = plusPhotoButton.frame.width / 2
+        plusPhotoButton.layer.masksToBounds = true
+        plusPhotoButton.layer.borderColor = UIColor.black.cgColor
+        plusPhotoButton.layer.borderWidth = 3
+        dismiss(animated: true)
+    }
     
     let emailTextField: UITextField = {
         let tf = UITextField()
@@ -75,8 +98,6 @@ class ViewController: UIViewController {
     }()
     
     @objc func handleSignUp() {
-//        let email = "dummy@gmail.com"
-//        let password = "123123"
         guard let email = emailTextField.text, email.count > 0 else { return }
         guard let username = usernameTextField.text, username.count > 0 else { return }
         guard let password = passwordTextField.text, password.count > 0 else { return }
@@ -87,6 +108,54 @@ class ViewController: UIViewController {
                 return
             }
             print("Successfully created user:", user.uid)
+            
+            guard let image = self.plusPhotoButton.imageView?.image else { return }
+            guard let uploadData = image.jpegData(compressionQuality: 0.3) else { return }
+            let storageRef = Storage.storage().reference()
+            let filename = UUID().uuidString
+            
+            self.uploadImage(storageRef: storageRef, filename: filename, image: uploadData) { imageUrl in
+                
+                let uid = user.uid
+                let usernameValues = ["username": username, "profileImageUrl": imageUrl]
+                let values = [uid: usernameValues]
+                let db = Firestore.firestore()
+
+                db.document("test/users").updateData(values) { err in
+                    if let err = err {
+                        print("Failed to save user info into db:", err)
+                        return
+                    }
+                    print("Successfully saved user info to db")
+                    self.checkData()
+                }
+            }
+        }
+    }
+    
+    fileprivate func uploadImage(storageRef: StorageReference, filename: String, image: Data, completion: @escaping (String) -> Void) {
+        storageRef.child("profile_image").child(filename).putData(image, metadata: nil) { metadata, err in
+            if let err = err {
+                print("Failed to upload profile image:", err)
+                return
+            }
+//                guard let metadata = metadata else { return }
+//                let size = metadata.size
+            
+            storageRef.child("profile_image").child(filename).downloadURL { url, err in
+                guard let downloadURL = url else { return }
+                print("Successfully uploaded profile image:", downloadURL.absoluteString)
+                completion(downloadURL.absoluteString)
+            }
+        }
+    }
+    
+    func checkData() {
+        let database = Firestore.firestore()
+        let docRef = database.document("test/users")
+        docRef.getDocument { snapshot, error in
+            guard let data = snapshot?.data(), error == nil else { return }
+            print(data)
         }
     }
 
