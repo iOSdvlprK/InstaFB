@@ -7,10 +7,12 @@
 
 import UIKit
 import FirebaseAuth
-import FirebaseFirestore
+import FirebaseDatabase
 import FirebaseStorage
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    var dbRef: DatabaseReference!
     
     let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -114,27 +116,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             let storageRef = Storage.storage().reference()
             let filename = UUID().uuidString
             
-            self.uploadImage(storageRef: storageRef, filename: filename, image: uploadData) { imageUrl in
-                
+            self.uploadImage(storageRef: storageRef, filename: filename, imgData: uploadData) { imageUrl in
                 let uid = user.uid
-                let usernameValues = ["username": username, "profileImageUrl": imageUrl]
-                let values = [uid: usernameValues]
-                let db = Firestore.firestore()
+                let dictionaryValues = ["username": username, "profileImageUrl": imageUrl]
+                let values = [uid: dictionaryValues]
 
-                db.document("test/users").updateData(values) { err in
+    //            self.dbRef.child("users").setValue(values) { err, dbRef in
+                self.dbRef.child("users").updateChildValues(values) { err, dbRef in
                     if let err = err {
-                        print("Failed to save user info into db:", err)
+                        print("Failed to save user info to db:", err)
                         return
                     }
                     print("Successfully saved user info to db")
-                    self.checkData()
                 }
             }
         }
     }
     
-    fileprivate func uploadImage(storageRef: StorageReference, filename: String, image: Data, completion: @escaping (String) -> Void) {
-        storageRef.child("profile_image").child(filename).putData(image, metadata: nil) { metadata, err in
+    fileprivate func uploadImage(storageRef: StorageReference, filename: String, imgData: Data, completion: @escaping (String) -> Void) {
+        storageRef.child("profile_images").child(filename).putData(imgData, metadata: nil) { metadata, err in
             if let err = err {
                 print("Failed to upload profile image:", err)
                 return
@@ -142,7 +142,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 //                guard let metadata = metadata else { return }
 //                let size = metadata.size
             
-            storageRef.child("profile_image").child(filename).downloadURL { url, err in
+            storageRef.child("profile_images").child(filename).downloadURL { url, err in
                 guard let downloadURL = url else { return }
                 print("Successfully uploaded profile image:", downloadURL.absoluteString)
                 completion(downloadURL.absoluteString)
@@ -150,15 +150,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    func checkData() {
-        let database = Firestore.firestore()
-        let docRef = database.document("test/users")
-        docRef.getDocument { snapshot, error in
-            guard let data = snapshot?.data(), error == nil else { return }
-            print(data)
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -169,6 +160,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         plusPhotoButton.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 40, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 140, height: 140)
         
         setupInputFields()
+        
+        dbRef = Database.database(url: "https://instafb-58b4d-default-rtdb.asia-southeast1.firebasedatabase.app/").reference()
     }
 
     fileprivate func setupInputFields() {
