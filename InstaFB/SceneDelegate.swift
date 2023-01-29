@@ -11,12 +11,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
+    @available(iOS 13.0, *)
+    func customNavBarAppearance() -> UINavigationBarAppearance {
+        let appearance = UINavigationBarAppearance()
+        
+        appearance.configureWithDefaultBackground()
+        appearance.backgroundColor = .clear
+        
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.label]
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.label]
+        
+        return appearance
+    }
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        if #available(iOS 13.0, *) {
+            let newNavBarAppearance = customNavBarAppearance()
+            UINavigationBar.appearance().scrollEdgeAppearance = newNavBarAppearance
+            UINavigationBar.appearance().compactAppearance = newNavBarAppearance
+            UINavigationBar.appearance().standardAppearance = newNavBarAppearance
+            
+            let newTabBarAppearance = UITabBarAppearance()
+            newTabBarAppearance.configureWithDefaultBackground()
+            newTabBarAppearance.backgroundColor = .clear
+            UITabBar.appearance().standardAppearance = newTabBarAppearance
+            UITabBar.appearance().scrollEdgeAppearance = newTabBarAppearance
+        }
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = ViewController()
+        window.rootViewController = MainTabBarController()
         window.makeKeyAndVisible()
         self.window = window
     }
