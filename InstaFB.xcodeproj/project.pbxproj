@@ -13,6 +13,7 @@
 		D8EFAE85298294C10060ACE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8EFAE84298294C10060ACE1 /* GoogleService-Info.plist */; };
 		D8EFAE88298299180060ACE1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D8EFAE87298299180060ACE1 /* FirebaseAuth */; };
 		D8EFAE8A298299180060ACE1 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = D8EFAE89298299180060ACE1 /* FirebaseDatabase */; };
+		D8F1D8D02986BD650082D663 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D8CF2986BD650082D663 /* UserProfileHeader.swift */; };
 		D8FE180F29811F2000400000 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FE180E29811F2000400000 /* AppDelegate.swift */; };
 		D8FE181129811F2000400000 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FE181029811F2000400000 /* SceneDelegate.swift */; };
 		D8FE181329811F2000400000 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FE181229811F2000400000 /* ViewController.swift */; };
@@ -26,6 +27,7 @@
 		D839ECF42984FB3A0038D299 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		D839ECF62984FF960038D299 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		D8EFAE84298294C10060ACE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D8F1D8CF2986BD650082D663 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		D8FE180B29811F2000400000 /* InstaFB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaFB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8FE180E29811F2000400000 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8FE181029811F2000400000 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +60,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D8F1D8CE2986BD3D0082D663 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				D839ECF62984FF960038D299 /* UserProfileController.swift */,
+				D8F1D8CF2986BD650082D663 /* UserProfileHeader.swift */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
 		D8FE180229811F2000400000 = {
 			isa = PBXGroup;
 			children = (
@@ -78,11 +89,11 @@
 		D8FE180D29811F2000400000 /* InstaFB */ = {
 			isa = PBXGroup;
 			children = (
+				D8F1D8CE2986BD3D0082D663 /* UserProfile */,
 				D8FE182229815A0100400000 /* Utils */,
 				D8FE180E29811F2000400000 /* AppDelegate.swift */,
 				D8FE181029811F2000400000 /* SceneDelegate.swift */,
 				D839ECF42984FB3A0038D299 /* MainTabBarController.swift */,
-				D839ECF62984FF960038D299 /* UserProfileController.swift */,
 				D8FE181229811F2000400000 /* ViewController.swift */,
 				D8FE181429811F2000400000 /* Main.storyboard */,
 				D8FE181729811F2100400000 /* Assets.xcassets */,
@@ -182,6 +193,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8FE181329811F2000400000 /* ViewController.swift in Sources */,
+				D8F1D8D02986BD650082D663 /* UserProfileHeader.swift in Sources */,
 				D8FE180F29811F2000400000 /* AppDelegate.swift in Sources */,
 				D839ECF72984FF960038D299 /* UserProfileController.swift in Sources */,
 				D839ECF52984FB3A0038D299 /* MainTabBarController.swift in Sources */,
