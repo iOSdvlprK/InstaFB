@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D80419C029894ECD00B216CB /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80419BF29894ECD00B216CB /* LoginController.swift */; };
 		D839ECF52984FB3A0038D299 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D839ECF42984FB3A0038D299 /* MainTabBarController.swift */; };
 		D839ECF72984FF960038D299 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D839ECF62984FF960038D299 /* UserProfileController.swift */; };
 		D8B09B4729841DD1001D0E31 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D8B09B4629841DD1001D0E31 /* FirebaseStorage */; };
@@ -16,7 +17,7 @@
 		D8F1D8D02986BD650082D663 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D8CF2986BD650082D663 /* UserProfileHeader.swift */; };
 		D8FE180F29811F2000400000 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FE180E29811F2000400000 /* AppDelegate.swift */; };
 		D8FE181129811F2000400000 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FE181029811F2000400000 /* SceneDelegate.swift */; };
-		D8FE181329811F2000400000 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FE181229811F2000400000 /* ViewController.swift */; };
+		D8FE181329811F2000400000 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FE181229811F2000400000 /* SignUpController.swift */; };
 		D8FE181629811F2000400000 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8FE181429811F2000400000 /* Main.storyboard */; };
 		D8FE181829811F2100400000 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8FE181729811F2100400000 /* Assets.xcassets */; };
 		D8FE181B29811F2100400000 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8FE181929811F2100400000 /* LaunchScreen.storyboard */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D80419BF29894ECD00B216CB /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		D839ECF42984FB3A0038D299 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		D839ECF62984FF960038D299 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		D8EFAE84298294C10060ACE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -31,7 +33,7 @@
 		D8FE180B29811F2000400000 /* InstaFB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaFB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8FE180E29811F2000400000 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8FE181029811F2000400000 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D8FE181229811F2000400000 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D8FE181229811F2000400000 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		D8FE181529811F2000400000 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D8FE181729811F2100400000 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8FE181A29811F2100400000 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,6 +55,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D80419BE29894EB700B216CB /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D80419BF29894ECD00B216CB /* LoginController.swift */,
+				D8FE181229811F2000400000 /* SignUpController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		D8EFAE8D29839CCD0060ACE1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -89,12 +100,12 @@
 		D8FE180D29811F2000400000 /* InstaFB */ = {
 			isa = PBXGroup;
 			children = (
+				D80419BE29894EB700B216CB /* Login */,
 				D8F1D8CE2986BD3D0082D663 /* UserProfile */,
 				D8FE182229815A0100400000 /* Utils */,
 				D8FE180E29811F2000400000 /* AppDelegate.swift */,
 				D8FE181029811F2000400000 /* SceneDelegate.swift */,
 				D839ECF42984FB3A0038D299 /* MainTabBarController.swift */,
-				D8FE181229811F2000400000 /* ViewController.swift */,
 				D8FE181429811F2000400000 /* Main.storyboard */,
 				D8FE181729811F2100400000 /* Assets.xcassets */,
 				D8FE181929811F2100400000 /* LaunchScreen.storyboard */,
@@ -192,11 +203,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8FE181329811F2000400000 /* ViewController.swift in Sources */,
+				D8FE181329811F2000400000 /* SignUpController.swift in Sources */,
 				D8F1D8D02986BD650082D663 /* UserProfileHeader.swift in Sources */,
 				D8FE180F29811F2000400000 /* AppDelegate.swift in Sources */,
 				D839ECF72984FF960038D299 /* UserProfileController.swift in Sources */,
 				D839ECF52984FB3A0038D299 /* MainTabBarController.swift in Sources */,
+				D80419C029894ECD00B216CB /* LoginController.swift in Sources */,
 				D8FE181129811F2000400000 /* SceneDelegate.swift in Sources */,
 				D8FE182429815A0E00400000 /* Extensions.swift in Sources */,
 			);
