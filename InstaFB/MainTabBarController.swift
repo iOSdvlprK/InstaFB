@@ -25,6 +25,10 @@ class MainTabBarController: UITabBarController {
             return
         }
         
+        setupViewControllers()
+    }
+    
+    func setupViewControllers() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
 //        layout.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)

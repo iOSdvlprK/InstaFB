@@ -84,7 +84,7 @@ class UserProfileHeader: UICollectionReusableView {
     let editProfileButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Edit Profile", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.label, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.layer.borderColor = UIColor.systemGray4.cgColor
         button.layer.borderWidth = 1
