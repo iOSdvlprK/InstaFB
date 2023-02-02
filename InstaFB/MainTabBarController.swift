@@ -8,10 +8,31 @@
 import UIKit
 import FirebaseAuth
 
-class MainTabBarController: UITabBarController {
+class CustomNavController: UINavigationController {
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+}
+
+class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        let index = viewControllers?.firstIndex(of: viewController)
+        if index == 2 {
+            let layout = UICollectionViewFlowLayout()
+            let photoSelectorController = PhotoSelectorController(collectionViewLayout: layout)
+            let navController = CustomNavController(rootViewController: photoSelectorController)
+            navController.modalPresentationStyle = .fullScreen
+            present(navController, animated: true)
+            return false
+        }
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.delegate = self
         
         if Auth.auth().currentUser == nil {
             // show login controller if not logged in
