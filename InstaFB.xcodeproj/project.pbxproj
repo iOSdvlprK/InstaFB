@@ -12,6 +12,7 @@
 		D839ECF72984FF960038D299 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D839ECF62984FF960038D299 /* UserProfileController.swift */; };
 		D8B09B4729841DD1001D0E31 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D8B09B4629841DD1001D0E31 /* FirebaseStorage */; };
 		D8EAC95E298BDEFB00E0634B /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EAC95D298BDEFB00E0634B /* PhotoSelectorController.swift */; };
+		D8EAC960298C13AA00E0634B /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EAC95F298C13AA00E0634B /* PhotoSelectorCell.swift */; };
 		D8EFAE85298294C10060ACE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8EFAE84298294C10060ACE1 /* GoogleService-Info.plist */; };
 		D8EFAE88298299180060ACE1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D8EFAE87298299180060ACE1 /* FirebaseAuth */; };
 		D8EFAE8A298299180060ACE1 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = D8EFAE89298299180060ACE1 /* FirebaseDatabase */; };
@@ -30,6 +31,7 @@
 		D839ECF42984FB3A0038D299 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		D839ECF62984FF960038D299 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		D8EAC95D298BDEFB00E0634B /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
+		D8EAC95F298C13AA00E0634B /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		D8EFAE84298294C10060ACE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D8F1D8CF2986BD650082D663 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		D8FE180B29811F2000400000 /* InstaFB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaFB.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				D8EAC95D298BDEFB00E0634B /* PhotoSelectorController.swift */,
+				D8EAC95F298C13AA00E0634B /* PhotoSelectorCell.swift */,
 			);
 			path = AddPhoto;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				D80419C029894ECD00B216CB /* LoginController.swift in Sources */,
 				D8FE181129811F2000400000 /* SceneDelegate.swift in Sources */,
 				D8FE182429815A0E00400000 /* Extensions.swift in Sources */,
+				D8EAC960298C13AA00E0634B /* PhotoSelectorCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
