@@ -17,6 +17,7 @@
 		D8EFAE88298299180060ACE1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D8EFAE87298299180060ACE1 /* FirebaseAuth */; };
 		D8EFAE8A298299180060ACE1 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = D8EFAE89298299180060ACE1 /* FirebaseDatabase */; };
 		D8F1D8D02986BD650082D663 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F1D8CF2986BD650082D663 /* UserProfileHeader.swift */; };
+		D8F684D7298D4FC700EDD515 /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F684D6298D4FC700EDD515 /* PhotoSelectorHeader.swift */; };
 		D8FE180F29811F2000400000 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FE180E29811F2000400000 /* AppDelegate.swift */; };
 		D8FE181129811F2000400000 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FE181029811F2000400000 /* SceneDelegate.swift */; };
 		D8FE181329811F2000400000 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FE181229811F2000400000 /* SignUpController.swift */; };
@@ -34,6 +35,7 @@
 		D8EAC95F298C13AA00E0634B /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		D8EFAE84298294C10060ACE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D8F1D8CF2986BD650082D663 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
+		D8F684D6298D4FC700EDD515 /* PhotoSelectorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeader.swift; sourceTree = "<group>"; };
 		D8FE180B29811F2000400000 /* InstaFB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaFB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8FE180E29811F2000400000 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8FE181029811F2000400000 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 		D8EAC95C298BDED800E0634B /* AddPhoto */ = {
 			isa = PBXGroup;
 			children = (
+				D8F684D6298D4FC700EDD515 /* PhotoSelectorHeader.swift */,
 				D8EAC95D298BDEFB00E0634B /* PhotoSelectorController.swift */,
 				D8EAC95F298C13AA00E0634B /* PhotoSelectorCell.swift */,
 			);
@@ -223,6 +226,7 @@
 				D8EAC95E298BDEFB00E0634B /* PhotoSelectorController.swift in Sources */,
 				D839ECF72984FF960038D299 /* UserProfileController.swift in Sources */,
 				D839ECF52984FB3A0038D299 /* MainTabBarController.swift in Sources */,
+				D8F684D7298D4FC700EDD515 /* PhotoSelectorHeader.swift in Sources */,
 				D80419C029894ECD00B216CB /* LoginController.swift in Sources */,
 				D8FE181129811F2000400000 /* SceneDelegate.swift in Sources */,
 				D8FE182429815A0E00400000 /* Extensions.swift in Sources */,
