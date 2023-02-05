@@ -22,7 +22,7 @@ class SharePhotoController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.rgb(red: 240, green: 240, blue: 240)
+        view.backgroundColor = UIColor.systemGray6
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(handleShare))
         
@@ -47,7 +47,7 @@ class SharePhotoController: UIViewController {
     
     fileprivate func setupImageAndTextViews() {
         let containterView = UIView()
-        containterView.backgroundColor = .white
+        containterView.backgroundColor = .systemBackground
         
         view.addSubview(containterView)
         containterView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 100)
