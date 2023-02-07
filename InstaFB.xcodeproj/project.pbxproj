@@ -15,6 +15,8 @@
 		D839ECF72984FF960038D299 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D839ECF62984FF960038D299 /* UserProfileController.swift */; };
 		D8A0D1E3298E2C05005128D4 /* SharePhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0D1E2298E2C05005128D4 /* SharePhotoController.swift */; };
 		D8B09B4729841DD1001D0E31 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D8B09B4629841DD1001D0E31 /* FirebaseStorage */; };
+		D8DF28942991179500662897 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DF28932991179500662897 /* HomeController.swift */; };
+		D8DF289629912C0F00662897 /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DF289529912C0F00662897 /* HomePostCell.swift */; };
 		D8EAC95E298BDEFB00E0634B /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EAC95D298BDEFB00E0634B /* PhotoSelectorController.swift */; };
 		D8EAC960298C13AA00E0634B /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EAC95F298C13AA00E0634B /* PhotoSelectorCell.swift */; };
 		D8EFAE85298294C10060ACE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8EFAE84298294C10060ACE1 /* GoogleService-Info.plist */; };
@@ -39,6 +41,8 @@
 		D839ECF42984FB3A0038D299 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		D839ECF62984FF960038D299 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		D8A0D1E2298E2C05005128D4 /* SharePhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoController.swift; sourceTree = "<group>"; };
+		D8DF28932991179500662897 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		D8DF289529912C0F00662897 /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
 		D8EAC95D298BDEFB00E0634B /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		D8EAC95F298C13AA00E0634B /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		D8EFAE84298294C10060ACE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -84,6 +88,15 @@
 				D8FE181229811F2000400000 /* SignUpController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		D8DF28922991178600662897 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D8DF28932991179500662897 /* HomeController.swift */,
+				D8DF289529912C0F00662897 /* HomePostCell.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		D8EAC95C298BDED800E0634B /* AddPhoto */ = {
@@ -134,6 +147,7 @@
 		D8FE180D29811F2000400000 /* InstaFB */ = {
 			isa = PBXGroup;
 			children = (
+				D8DF28922991178600662897 /* Home */,
 				D8025A9B298FB67D00802EBA /* Models */,
 				D8EAC95C298BDED800E0634B /* AddPhoto */,
 				D80419BE29894EB700B216CB /* Login */,
@@ -241,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8FE181329811F2000400000 /* SignUpController.swift in Sources */,
+				D8DF289629912C0F00662897 /* HomePostCell.swift in Sources */,
 				D8F1D8D02986BD650082D663 /* UserProfileHeader.swift in Sources */,
 				D8FE180F29811F2000400000 /* AppDelegate.swift in Sources */,
 				D8EAC95E298BDEFB00E0634B /* PhotoSelectorController.swift in Sources */,
@@ -252,6 +267,7 @@
 				D8F684D7298D4FC700EDD515 /* PhotoSelectorHeader.swift in Sources */,
 				D80419C029894ECD00B216CB /* LoginController.swift in Sources */,
 				D8FE181129811F2000400000 /* SceneDelegate.swift in Sources */,
+				D8DF28942991179500662897 /* HomeController.swift in Sources */,
 				D8025A9F298FDC4300802EBA /* UserProfilePhotoCell.swift in Sources */,
 				D8FE182429815A0E00400000 /* Extensions.swift in Sources */,
 				D8EAC960298C13AA00E0634B /* PhotoSelectorCell.swift in Sources */,
