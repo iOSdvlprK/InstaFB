@@ -11,7 +11,7 @@ import FirebaseDatabase
 
 class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    var dbRef: DatabaseReference!
+//    var dbRef: DatabaseReference!
     let cellId = "cellId"
     
     override func viewDidLoad() {
@@ -20,7 +20,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         collectionView.backgroundColor = .systemBackground
         
         navigationItem.title = Auth.auth().currentUser?.uid
-        dbRef = Database.database(url: "https://instafb-58b4d-default-rtdb.asia-southeast1.firebasedatabase.app/").reference()
+//        dbRef = Database.database(url: "https://instafb-58b4d-default-rtdb.asia-southeast1.firebasedatabase.app/").reference()
         
         fetchUser()
         
@@ -142,20 +142,11 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     fileprivate func fetchUser() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        dbRef.child("users").child(uid).observeSingleEvent(of: .value) { snapshot in
-            print(snapshot.value ?? "")
-            
-            guard let dictionary = snapshot.value as? [String: Any] else { return }
-//            let username = dictionary["username"] as? String
-//            let profileImageUrl = dictionary["profileImageUrl"] as? String
-//            self.navigationItem.title = username
-            self.user = User(dictionary: dictionary)
+        FBExtension.fetchUserWithUID(uid: uid) { user in
+            self.user = user
             self.navigationItem.title = self.user?.username
             
             self.collectionView.reloadData()
-        } withCancel: { err in
-            print("Failed to fetch user:", err)
         }
-
     }
 }

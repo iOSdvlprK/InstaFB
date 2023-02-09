@@ -9,10 +9,12 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
+var dbRef: DatabaseReference!
+
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let cellId = "cellId"
-    var dbRef: DatabaseReference!
+//    var dbRef: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,34 +30,31 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     var posts = [Post]()
     fileprivate func fetchPosts() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        dbRef.child("users").child(uid).observeSingleEvent(of: .value) { snapshot in
-            print(snapshot.value ?? "")
+        
+        FBExtension.fetchUserWithUID(uid: uid) { user in
+            self.fetchPostsWithUser(user: user)
+        }
+    }
+    
+    fileprivate func fetchPostsWithUser(user: User) {
+        let ref = dbRef.child("posts").child(user.uid)
+        
+        ref.observeSingleEvent(of: .value) { snapshot, _  in
             
-            guard let userDictionary = snapshot.value as? [String: Any] else { return }
-            let user = User(dictionary: userDictionary)
-            
-            let ref = self.dbRef.child("posts").child(uid)
-            
-            ref.observeSingleEvent(of: .value) { snapshot, _  in
+            guard let dictionaries = snapshot.value as? [String: Any] else { return }
+            dictionaries.forEach { key, value in
+                print("Key: \(key), Value: \(value)")
                 
-                guard let dictionaries = snapshot.value as? [String: Any] else { return }
-                dictionaries.forEach { key, value in
-                    print("Key: \(key), Value: \(value)")
-                    
-                    guard let dictionary = value as? [String: Any] else { return }
-                    
-                    let post = Post(user: user, dictionary: dictionary)
-                    self.posts.append(post)
-                }
+                guard let dictionary = value as? [String: Any] else { return }
                 
-                self.collectionView.reloadData()
-                
-            } withCancel: { err in
-                print("Failed to fetch posts:", err)
+                let post = Post(user: user, dictionary: dictionary)
+                self.posts.append(post)
             }
             
+            self.collectionView.reloadData()
+            
         } withCancel: { err in
-            print("Failed to fetch user for posts:", err)
+            print("Failed to fetch posts:", err)
         }
     }
     
