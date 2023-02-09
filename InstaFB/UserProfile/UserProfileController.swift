@@ -40,10 +40,13 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         let ref = dbRef.child("posts").child(uid)
         
         // later on we'll implement some pagination of data
-        ref.queryOrdered(byChild: "creationDate").observe(.childAdded) { snapshot in
+        ref.queryOrdered(byChild: "creationDate").observe(.childAdded) { snapshot, _ in
             guard let dictionary = snapshot.value as? [String: Any] else { return }
-            let post = Post(dictionary: dictionary)
-            self.posts.append(post)
+//            let post = Post(dictionary: dictionary)
+            guard let user = self.user else { return }
+            let post = Post(user: user, dictionary: dictionary)
+//            self.posts.append(post)
+            self.posts.insert(post, at: 0)
             
             self.collectionView.reloadData()
             
@@ -57,7 +60,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let ref = dbRef.child("posts").child(uid)
         
-        ref.observeSingleEvent(of: .value) { snapshot in
+        ref.observeSingleEvent(of: .value) { snapshot, _ in
             
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             dictionaries.forEach { key, value in
@@ -65,7 +68,9 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
                 
                 guard let dictionary = value as? [String: Any] else { return }
                 
-                let post = Post(dictionary: dictionary)
+//                let post = Post(dictionary: dictionary)
+                guard let user = self.user else { return }
+                let post = Post(user: user, dictionary: dictionary)
                 self.posts.append(post)
             }
             
@@ -152,15 +157,5 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
             print("Failed to fetch user:", err)
         }
 
-    }
-}
-
-struct User {
-    let username: String
-    let profileImageUrl: String
-    
-    init(dictionary: [String: Any]) {
-        self.username = dictionary["username"] as? String ?? ""
-        self.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
     }
 }

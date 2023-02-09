@@ -28,24 +28,34 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     var posts = [Post]()
     fileprivate func fetchPosts() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        let ref = dbRef.child("posts").child(uid)
-        
-        ref.observeSingleEvent(of: .value) { snapshot, _  in
+        dbRef.child("users").child(uid).observeSingleEvent(of: .value) { snapshot in
+            print(snapshot.value ?? "")
             
-            guard let dictionaries = snapshot.value as? [String: Any] else { return }
-            dictionaries.forEach { key, value in
-                print("Key: \(key), Value: \(value)")
+            guard let userDictionary = snapshot.value as? [String: Any] else { return }
+            let user = User(dictionary: userDictionary)
+            
+            let ref = self.dbRef.child("posts").child(uid)
+            
+            ref.observeSingleEvent(of: .value) { snapshot, _  in
                 
-                guard let dictionary = value as? [String: Any] else { return }
+                guard let dictionaries = snapshot.value as? [String: Any] else { return }
+                dictionaries.forEach { key, value in
+                    print("Key: \(key), Value: \(value)")
+                    
+                    guard let dictionary = value as? [String: Any] else { return }
+                    
+                    let post = Post(user: user, dictionary: dictionary)
+                    self.posts.append(post)
+                }
                 
-                let post = Post(dictionary: dictionary)
-                self.posts.append(post)
+                self.collectionView.reloadData()
+                
+            } withCancel: { err in
+                print("Failed to fetch posts:", err)
             }
             
-            self.collectionView.reloadData()
-            
         } withCancel: { err in
-            print("Failed to fetch posts:", err)
+            print("Failed to fetch user for posts:", err)
         }
     }
     
