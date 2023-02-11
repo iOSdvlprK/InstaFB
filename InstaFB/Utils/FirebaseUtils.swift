@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import FirebaseAuth
 
 struct FBExtension {
     static func fetchUserWithUID(uid: String, completion: @escaping (User) -> ()) {
