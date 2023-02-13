@@ -11,38 +11,33 @@ import FirebaseDatabase
 
 class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-//    var dbRef: DatabaseReference!
     let cellId = "cellId"
+    var userId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.backgroundColor = .systemBackground
-        
-        navigationItem.title = Auth.auth().currentUser?.uid
-//        dbRef = Database.database(url: "https://instafb-58b4d-default-rtdb.asia-southeast1.firebasedatabase.app/").reference()
-        
-        fetchUser()
-        
         collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerId")
         collectionView.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: cellId)
         
         setupLogOutButton()
         
-//        fetchPosts()
-        fetchOrderedPosts()
+        fetchUser()
+//        fetchOrderedPosts()
     }
     
     var posts = [Post]()
     
     fileprivate func fetchOrderedPosts() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+//        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let uid = self.user?.uid else { return }
+        
         let ref = dbRef.child("posts").child(uid)
         
         // later on we'll implement some pagination of data
-        ref.queryOrdered(byChild: "creationDate").observe(.childAdded) { snapshot, _ in
+        ref.queryOrdered(byChild: "creationDate").observe(.childAdded) { snapshot in
             guard let dictionary = snapshot.value as? [String: Any] else { return }
-//            let post = Post(dictionary: dictionary)
             guard let user = self.user else { return }
             let post = Post(user: user, dictionary: dictionary)
 //            self.posts.append(post)
@@ -68,7 +63,6 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
                 
                 guard let dictionary = value as? [String: Any] else { return }
                 
-//                let post = Post(dictionary: dictionary)
                 guard let user = self.user else { return }
                 let post = Post(user: user, dictionary: dictionary)
                 self.posts.append(post)
@@ -140,13 +134,16 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
     var user: User?
     fileprivate func fetchUser() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+//        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let uid = userId ?? Auth.auth().currentUser?.uid ?? ""
         
         FBExtension.fetchUserWithUID(uid: uid) { user in
             self.user = user
             self.navigationItem.title = self.user?.username
             
             self.collectionView.reloadData()
+            
+            self.fetchOrderedPosts()
         }
     }
 }
