@@ -18,13 +18,34 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: SharePhotoController.updateFeedNotificationName, object: nil)
+        
         collectionView.backgroundColor = .systemBackground
         
         collectionView.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
         dbRef = Database.database(url: "https://instafb-58b4d-default-rtdb.asia-southeast1.firebasedatabase.app/").reference()
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
+        
         setupNavigationItems()
         
+        fetchAllPosts()
+    }
+    
+    @objc fileprivate func handleUpdateFeed() {
+        handleRefresh()
+    }
+    
+    @objc fileprivate func handleRefresh() {
+        print("Handling refresh..")
+        posts.removeAll()
+        fetchAllPosts()
+    }
+    
+    fileprivate func fetchAllPosts() {
         fetchPosts()
         fetchFollowingUserIds()
     }
@@ -57,6 +78,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let ref = dbRef.child("posts").child(user.uid)
         
         ref.observeSingleEvent(of: .value) { snapshot, _  in
+            self.collectionView.refreshControl?.endRefreshing()
+            
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             dictionaries.forEach { key, value in
                 print("Key: \(key), Value: \(value)")
