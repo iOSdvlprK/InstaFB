@@ -19,6 +19,7 @@
 		D8B09B4729841DD1001D0E31 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D8B09B4629841DD1001D0E31 /* FirebaseStorage */; };
 		D8DF28942991179500662897 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DF28932991179500662897 /* HomeController.swift */; };
 		D8DF289629912C0F00662897 /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DF289529912C0F00662897 /* HomePostCell.swift */; };
+		D8E4F18F29A0F49D00E9641F /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4F18E29A0F49D00E9641F /* CameraController.swift */; };
 		D8EAC95E298BDEFB00E0634B /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EAC95D298BDEFB00E0634B /* PhotoSelectorController.swift */; };
 		D8EAC960298C13AA00E0634B /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EAC95F298C13AA00E0634B /* PhotoSelectorCell.swift */; };
 		D8EFAE85298294C10060ACE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8EFAE84298294C10060ACE1 /* GoogleService-Info.plist */; };
@@ -49,6 +50,7 @@
 		D8AA3DED29957B810082C8FC /* FirebaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUtils.swift; sourceTree = "<group>"; };
 		D8DF28932991179500662897 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		D8DF289529912C0F00662897 /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
+		D8E4F18E29A0F49D00E9641F /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		D8EAC95D298BDEFB00E0634B /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		D8EAC95F298C13AA00E0634B /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		D8EFAE84298294C10060ACE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -108,6 +110,14 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		D8E4F18D29A0F48000E9641F /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				D8E4F18E29A0F49D00E9641F /* CameraController.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
 		D8EAC95C298BDED800E0634B /* AddPhoto */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +175,7 @@
 		D8FE180D29811F2000400000 /* InstaFB */ = {
 			isa = PBXGroup;
 			children = (
+				D8E4F18D29A0F48000E9641F /* Camera */,
 				D8F039522996645A008BED38 /* Search */,
 				D8DF28922991178600662897 /* Home */,
 				D8025A9B298FB67D00802EBA /* Models */,
@@ -280,6 +291,7 @@
 				D8FE180F29811F2000400000 /* AppDelegate.swift in Sources */,
 				D8EAC95E298BDEFB00E0634B /* PhotoSelectorController.swift in Sources */,
 				D8AA3DEE29957B810082C8FC /* FirebaseUtils.swift in Sources */,
+				D8E4F18F29A0F49D00E9641F /* CameraController.swift in Sources */,
 				D8025AA1298FF2F500802EBA /* CustomImageView.swift in Sources */,
 				D8025A9D298FB69000802EBA /* Post.swift in Sources */,
 				D839ECF72984FF960038D299 /* UserProfileController.swift in Sources */,
@@ -444,11 +456,12 @@
 				DEVELOPMENT_TEAM = Q5CYH8RVUS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = InstaFB/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We would like to access the camera to take photos.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs to use the photos in the library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -472,11 +485,12 @@
 				DEVELOPMENT_TEAM = Q5CYH8RVUS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = InstaFB/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We would like to access the camera to take photos.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs to use the photos in the library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
