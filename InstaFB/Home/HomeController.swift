@@ -101,7 +101,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     fileprivate func setupNavigationItems() {
-        navigationItem.titleView = UIImageView(image: UIImage(named: "logo2"))
+        navigationItem.titleView = UIImageView(image: UIImage(named: "logo2")?.withTintColor(.label))
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

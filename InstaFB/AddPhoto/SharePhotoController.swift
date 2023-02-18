@@ -82,7 +82,7 @@ class SharePhotoController: UIViewController {
         }
     }
     
-    static let updateFeedNotificationName = NSNotification.Name("UpdateFeed")
+    static let updateFeedNotificationName = Notification.Name("UpdateFeed")
     
     fileprivate func saveToDatabaseWithImageUrl(imageUrl: String) {
         guard let caption = textView.text else { return }
