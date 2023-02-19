@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 
-class CameraController: UIViewController {
+class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     let capturePhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -28,10 +28,6 @@ class CameraController: UIViewController {
         dismiss(animated: true)
     }
     
-    @objc fileprivate func handleCapturePhoto() {
-        print("Capturing photo..")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,6 +44,25 @@ class CameraController: UIViewController {
         dismissButton.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: view.trailingAnchor, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 50, height: 50)
     }
     
+    @objc fileprivate func handleCapturePhoto() {
+        print("Capturing photo..")
+        
+        let settings = AVCapturePhotoSettings()
+        output.capturePhoto(with: settings, delegate: self)
+    }
+    
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        let imageRep = photo.cgImageRepresentation()
+        let imageData = UIImage(cgImage: imageRep!, scale: 1.0, orientation: .right)
+        let previewImageView = UIImageView(image: imageData)
+        
+        view.addSubview(previewImageView)
+        previewImageView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+
+        print("Finish processing photo sample buffer..")
+    }
+    
+    let output = AVCapturePhotoOutput()
     fileprivate func setupCaptureSession() {
         let captureSession = AVCaptureSession()
         
@@ -64,8 +79,6 @@ class CameraController: UIViewController {
         }
         
         // 2. setup outputs
-        let output = AVCapturePhotoOutput()
-        
         if captureSession.canAddOutput(output) {
             captureSession.addOutput(output)
         }
