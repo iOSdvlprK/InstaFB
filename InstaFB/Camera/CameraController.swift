@@ -35,6 +35,10 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         setupHUD()
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     fileprivate func setupHUD() {
         view.addSubview(capturePhotoButton)
         capturePhotoButton.anchor(top: nil, leading: nil, bottom: view.bottomAnchor, trailing: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 24, paddingRight: 0, width: 80, height: 80)
@@ -53,13 +57,11 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         let imageRep = photo.cgImageRepresentation()
-        let imageData = UIImage(cgImage: imageRep!, scale: 1.0, orientation: .right)
-        let previewImageView = UIImageView(image: imageData)
-        
-        view.addSubview(previewImageView)
-        previewImageView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-
-        print("Finish processing photo sample buffer..")
+        let previewImage = UIImage(cgImage: imageRep!, scale: 1.0, orientation: .right)
+        let containerView = PreviewPhotoContainerView()
+        containerView.previewImageView.image = previewImage
+        view.addSubview(containerView)
+        containerView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
     }
     
     let output = AVCapturePhotoOutput()
