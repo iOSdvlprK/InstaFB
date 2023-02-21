@@ -75,13 +75,13 @@ class HomePostCell: UICollectionViewCell {
     
     let likeButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "like_unselected")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(UIImage(named: "like_unselected")?.withTintColor(.label, renderingMode: .alwaysOriginal), for: .normal)
         return button
     }()
     
     let commentButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "comment")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(UIImage(named: "comment")?.withTintColor(.label, renderingMode: .alwaysOriginal), for: .normal)
         button.addTarget(nil, action: #selector(handleComment), for: .touchUpInside)
         return button
     }()
@@ -94,13 +94,13 @@ class HomePostCell: UICollectionViewCell {
     
     let sendMessageButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "send")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(UIImage(named: "send")?.withTintColor(.label, renderingMode: .alwaysOriginal), for: .normal)
         return button
     }()
     
     let bookmarkButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "ribbon")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(UIImage(named: "ribbon")?.withTintColor(.label, renderingMode: .alwaysOriginal), for: .normal)
         return button
     }()
     
