@@ -85,7 +85,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 print("Key: \(key), Value: \(value)")
                 
                 guard let dictionary = value as? [String: Any] else { return }
-                let post = Post(user: user, dictionary: dictionary)
+                var post = Post(user: user, dictionary: dictionary)
+                post.id = key   // 'childByAutoId()' created in SharePhotoController
                 self.posts.append(post)
             }
             
@@ -129,6 +130,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         print("Message coming from HomeController")
         print(post.caption)
         let commentsController = CommentsController(collectionViewLayout: UICollectionViewFlowLayout())
+        commentsController.post = post
         navigationController?.pushViewController(commentsController, animated: true)
     }
     
