@@ -8,14 +8,50 @@
 import UIKit
 import FirebaseAuth
 
-class CommentsController: UICollectionViewController {
+class CommentsController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var post: Post?
+    let cellId = "cellId"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Comments"
+        
         collectionView.backgroundColor = .systemRed
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
+        collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
+        collectionView.register(CommentCell.self, forCellWithReuseIdentifier: cellId)
+        
+        fetchComments()
+    }
+    
+    var comments = [Comment]()
+    fileprivate func fetchComments() {
+        guard let postId = self.post?.id else { return }
+        dbRef.child("comments").child(postId).observe(.childAdded) { snapshot in
+            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            let comment = Comment(dictionary: dictionary)
+//            print(comment.text, comment.uid)
+            self.comments.append(comment)
+            self.collectionView.reloadData()
+            
+        } withCancel: { err in
+            print("Failed to observe comments")
+        }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return comments.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: 50)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CommentCell
+        cell.comment = self.comments[indexPath.item]
+        return cell
     }
     
     override func viewWillAppear(_ animated: Bool) {
