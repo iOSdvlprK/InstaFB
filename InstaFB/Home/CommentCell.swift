@@ -16,18 +16,19 @@ class CommentCell: UICollectionViewCell {
             let attributedText = NSMutableAttributedString(string: comment.user.username, attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
             attributedText.append(NSAttributedString(string: " " + comment.text, attributes: [.font: UIFont.systemFont(ofSize: 14)]))
             
-            textView.attributedText = attributedText
+            textLabel.attributedText = attributedText
             profileImageView.loadImage(urlString: comment.user.profileImageUrl)
         }
     }
     
-    let textView: UITextView = {
-        let textView = UITextView()
-        textView.font = UIFont.systemFont(ofSize: 14)
-//        label.numberOfLines = 0
-//        label.backgroundColor = .systemGray6
-        textView.isScrollEnabled = false
-        return textView
+    let textLabel: UILabel = {
+        let lb = UILabel()
+        lb.font = UIFont.systemFont(ofSize: 14)
+        lb.textColor = .label
+        lb.numberOfLines = 0
+//        lb.backgroundColor = .systemGray6
+//        textView.isScrollEnabled = false
+        return lb
     }()
     
     let profileImageView: CustomImageView = {
@@ -46,8 +47,8 @@ class CommentCell: UICollectionViewCell {
         profileImageView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
         profileImageView.layer.cornerRadius = 40 / 2
         
-        addSubview(textView)
-        textView.anchor(top: topAnchor, leading: profileImageView.trailingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4, width: 0, height: 0)
+        addSubview(textLabel)
+        textLabel.anchor(top: topAnchor, leading: profileImageView.trailingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4, width: 0, height: 0)
     }
     
     required init?(coder: NSCoder) {

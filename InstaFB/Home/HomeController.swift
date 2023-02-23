@@ -87,14 +87,27 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 guard let dictionary = value as? [String: Any] else { return }
                 var post = Post(user: user, dictionary: dictionary)
                 post.id = key   // 'childByAutoId()' created in SharePhotoController
-                self.posts.append(post)
+                
+                guard let uid = Auth.auth().currentUser?.uid else { return }
+                dbRef.child("likes").child(key).child(uid).observeSingleEvent(of: .value) { snapshot in
+                    print(snapshot)
+                    
+                    if let value = snapshot.value as? Int, value == 1 {
+                        post.hasLiked = true
+                    } else {
+                        post.hasLiked = false
+                    }
+                    
+                    self.posts.append(post)
+                    self.posts.sort { post1, post2 in
+                        return post1.creationDate.compare(post2.creationDate) == .orderedDescending
+                    }
+                    self.collectionView.reloadData()
+                    
+                } withCancel: { err in
+                    print("Failed to fetch like info for post:", err)
+                }
             }
-            
-            self.posts.sort { post1, post2 in
-                return post1.creationDate.compare(post2.creationDate) == .orderedDescending
-            }
-            
-            self.collectionView.reloadData()
             
         } withCancel: { err in
             print("Failed to fetch posts:", err)
@@ -126,6 +139,15 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        var height: CGFloat = 40 + 8 + 8
+        height += view.frame.width
+        height += 50
+        height += 60
+        return CGSize(width: view.frame.width, height: height)
+    }
+    
     func didTapComment(post: Post) {
         print("Message coming from HomeController")
         print(post.caption)
@@ -134,12 +156,24 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         navigationController?.pushViewController(commentsController, animated: true)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func didLike(for cell: HomePostCell) {
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        var post = self.posts[indexPath.item]
+        print(post.caption)
         
-        var height: CGFloat = 40 + 8 + 8
-        height += view.frame.width
-        height += 50
-        height += 60
-        return CGSize(width: view.frame.width, height: height)
+        guard let postId = post.id else { return }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let values = [uid: post.hasLiked == true ? 0 : 1]
+        dbRef.child("likes").child(postId).updateChildValues(values) { err, _ in
+            if let err = err {
+                print("Failed to like post:", err)
+                return
+            }
+            print("Successfully liked post.")
+            
+            post.hasLiked = !post.hasLiked
+            self.posts[indexPath.item] = post
+            self.collectionView.reloadItems(at: [indexPath])
+        }
     }
 }
