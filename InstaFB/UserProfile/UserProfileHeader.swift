@@ -86,7 +86,7 @@ class UserProfileHeader: UICollectionReusableView {
         self.editProfileFollowButton.setTitle("Follow", for: .normal)
         self.editProfileFollowButton.backgroundColor = .rgb(red: 17, green: 154, blue: 237)
         self.editProfileFollowButton.setTitleColor(.white, for: .normal)
-        self.editProfileFollowButton.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
+        self.editProfileFollowButton.layer.borderColor = UIColor.systemGray3.cgColor
     }
     
     let profileImageView: CustomImageView = {
@@ -104,14 +104,14 @@ class UserProfileHeader: UICollectionReusableView {
     @objc fileprivate func handleChangeToGridView() {
         print("Changing to grid view")
         gridButton.tintColor = .mainBlue()
-        listButton.tintColor = UIColor(white: 0, alpha: 0.2)
+        listButton.tintColor = .systemGray3
         delegate?.didChangeToGridView()
     }
     
     let listButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "list"), for: .normal)
-        button.tintColor = UIColor(white: 0, alpha: 0.2)
+        button.tintColor = .systemGray3
         button.addTarget(nil, action: #selector(handleChangeToListView), for: .touchUpInside)
         return button
     }()
@@ -119,14 +119,14 @@ class UserProfileHeader: UICollectionReusableView {
     @objc fileprivate func handleChangeToListView() {
         print("Changing to list view")
         listButton.tintColor = .mainBlue()
-        gridButton.tintColor = UIColor(white: 0, alpha: 0.2)
+        gridButton.tintColor = .systemGray3
         delegate?.didChangeToListView()
     }
     
     let bookmarkButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "ribbon"), for: .normal)
-        button.tintColor = UIColor(white: 0, alpha: 0.2)
+        button.tintColor = .systemGray3
         return button
     }()
     
