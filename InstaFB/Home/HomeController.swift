@@ -40,7 +40,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     @objc fileprivate func handleRefresh() {
-        print("Handling refresh..")
+//        print("Handling refresh..")
         posts.removeAll()
         fetchAllPosts()
     }
@@ -82,7 +82,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             dictionaries.forEach { key, value in
-                print("Key: \(key), Value: \(value)")
+//                print("Key: \(key), Value: \(value)")
                 
                 guard let dictionary = value as? [String: Any] else { return }
                 var post = Post(user: user, dictionary: dictionary)
@@ -90,7 +90,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 
                 guard let uid = Auth.auth().currentUser?.uid else { return }
                 dbRef.child("likes").child(key).child(uid).observeSingleEvent(of: .value) { snapshot in
-                    print(snapshot)
+//                    print(snapshot)
                     
                     if let value = snapshot.value as? Int, value == 1 {
                         post.hasLiked = true
@@ -121,7 +121,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     @objc fileprivate func handleCamera() {
-        print("Showing Camera")
+//        print("Showing Camera")
         
         let cameraController = CameraController()
         cameraController.modalPresentationStyle = .fullScreen
@@ -149,8 +149,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     func didTapComment(post: Post) {
-        print("Message coming from HomeController")
-        print(post.caption)
+//        print("Message coming from HomeController")
+//        print(post.caption)
         let commentsController = CommentsController(collectionViewLayout: UICollectionViewFlowLayout())
         commentsController.post = post
         navigationController?.pushViewController(commentsController, animated: true)
@@ -159,7 +159,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     func didLike(for cell: HomePostCell) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
         var post = self.posts[indexPath.item]
-        print(post.caption)
+//        print(post.caption)
         
         guard let postId = post.id else { return }
         guard let uid = Auth.auth().currentUser?.uid else { return }

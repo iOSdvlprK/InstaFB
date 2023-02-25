@@ -11,6 +11,7 @@
 		D8025A9F298FDC4300802EBA /* UserProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8025A9E298FDC4300802EBA /* UserProfilePhotoCell.swift */; };
 		D8025AA1298FF2F500802EBA /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8025AA0298FF2F500802EBA /* CustomImageView.swift */; };
 		D80419C029894ECD00B216CB /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80419BF29894ECD00B216CB /* LoginController.swift */; };
+		D807B66529AA583100A9AEC1 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = D807B66429AA583100A9AEC1 /* FirebaseMessaging */; };
 		D839ECF52984FB3A0038D299 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D839ECF42984FB3A0038D299 /* MainTabBarController.swift */; };
 		D839ECF72984FF960038D299 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D839ECF62984FF960038D299 /* UserProfileController.swift */; };
 		D852028B29A408AA00D76A42 /* CustomAnimationDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D852028A29A408AA00D76A42 /* CustomAnimationDismisser.swift */; };
@@ -49,6 +50,7 @@
 		D8025A9E298FDC4300802EBA /* UserProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCell.swift; sourceTree = SOURCE_ROOT; };
 		D8025AA0298FF2F500802EBA /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomImageView.swift; path = InstaFB/UserProfile/CustomImageView.swift; sourceTree = SOURCE_ROOT; };
 		D80419BF29894ECD00B216CB /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		D807B66329AA4B3A00A9AEC1 /* InstaFB.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InstaFB.entitlements; sourceTree = "<group>"; };
 		D839ECF42984FB3A0038D299 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		D839ECF62984FF960038D299 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		D852028A29A408AA00D76A42 /* CustomAnimationDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationDismisser.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D807B66529AA583100A9AEC1 /* FirebaseMessaging in Frameworks */,
 				D8EFAE8A298299180060ACE1 /* FirebaseDatabase in Frameworks */,
 				D8B09B4729841DD1001D0E31 /* FirebaseStorage in Frameworks */,
 				D8EFAE88298299180060ACE1 /* FirebaseAuth in Frameworks */,
@@ -193,6 +196,7 @@
 		D8FE180D29811F2000400000 /* InstaFB */ = {
 			isa = PBXGroup;
 			children = (
+				D807B66329AA4B3A00A9AEC1 /* InstaFB.entitlements */,
 				D8E4F18D29A0F48000E9641F /* Camera */,
 				D8F039522996645A008BED38 /* Search */,
 				D8DF28922991178600662897 /* Home */,
@@ -243,6 +247,7 @@
 				D8EFAE87298299180060ACE1 /* FirebaseAuth */,
 				D8EFAE89298299180060ACE1 /* FirebaseDatabase */,
 				D8B09B4629841DD1001D0E31 /* FirebaseStorage */,
+				D807B66429AA583100A9AEC1 /* FirebaseMessaging */,
 			);
 			productName = InstaFB;
 			productReference = D8FE180B29811F2000400000 /* InstaFB.app */;
@@ -475,6 +480,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = InstaFB/InstaFB.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q5CYH8RVUS;
@@ -504,6 +510,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = InstaFB/InstaFB.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q5CYH8RVUS;
@@ -563,6 +570,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D807B66429AA583100A9AEC1 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D8EFAE86298299180060ACE1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
 		D8B09B4629841DD1001D0E31 /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D8EFAE86298299180060ACE1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

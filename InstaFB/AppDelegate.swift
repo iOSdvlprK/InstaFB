@@ -7,16 +7,56 @@
 
 import UIKit
 import FirebaseCore
+import UserNotifications
+import FirebaseMessaging
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        attemptRegisterForNotifications(application: application)
         return true
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("Registered for notifications:", deviceToken)
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("Registered with FCM with token:", fcmToken ?? "")
+    }
+    
+    // listen for user notifications
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.banner)
+    }
+    
+    private func attemptRegisterForNotifications(application: UIApplication) {
+        print("Attempting to register APNS..")
+        
+        UNUserNotificationCenter.current().delegate = self
+        Messaging.messaging().delegate = self
+        
+        // user notifications auth
+        let options: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(options: options) { granted, err in
+            if let err = err {
+                print("Failed to request auth:", err)
+                return
+            }
+            
+            if granted {
+                print("Auth granted")
+            } else {
+                print("Auth denied")
+            }
+        }
+        
+        application.registerForRemoteNotifications()
     }
 
     // MARK: UISceneSession Lifecycle
