@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import FirebaseMessaging
 
 class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -118,7 +119,8 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
             
             self.uploadImage(storageRef: storageRef, filename: filename, imgData: uploadData) { imageUrl in
                 let uid = user.uid
-                let dictionaryValues = ["username": username, "profileImageUrl": imageUrl]
+                guard let fcmToken = Messaging.messaging().fcmToken else { return }
+                let dictionaryValues = ["username": username, "profileImageUrl": imageUrl, "fcmToken": fcmToken]
                 let values = [uid: dictionaryValues]
 
     //            self.dbRef.child("users").setValue(values) { err, dbRef in
