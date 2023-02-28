@@ -13,8 +13,6 @@ import FirebaseMessaging
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
@@ -33,6 +31,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // listen for user notifications
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler(.banner)
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        let userInfo = response.notification.request.content.userInfo
+        if let followerId = userInfo["followerId"] as? String {
+            dump(userInfo)
+            print("followerId:", followerId)
+            
+            // push the UserProfileController for followerId
+            let userProfileController = UserProfileController(collectionViewLayout: UICollectionViewFlowLayout())
+            userProfileController.userId = followerId
+            
+            // access main UI from AppDelegate
+//            guard let window = UIApplication.shared.keyWindow else { return }
+            let window = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window
+            
+            if let mainTabBarController = window?.rootViewController as? MainTabBarController {
+                mainTabBarController.selectedIndex = 0
+                mainTabBarController.presentedViewController?.dismiss(animated: true)
+                
+                if let homeNavigationController = mainTabBarController.viewControllers?.first as? UINavigationController {
+                    homeNavigationController.pushViewController(userProfileController, animated: true)
+                }
+            }
+        }
     }
     
     private func attemptRegisterForNotifications(application: UIApplication) {
