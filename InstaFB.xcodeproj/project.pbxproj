@@ -18,6 +18,7 @@
 		D8AA3DEA29953BD00082C8FC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AA3DE929953BD00082C8FC /* User.swift */; };
 		D8AA3DEE29957B810082C8FC /* FirebaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AA3DED29957B810082C8FC /* FirebaseUtils.swift */; };
 		D8B09B4729841DD1001D0E31 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D8B09B4629841DD1001D0E31 /* FirebaseStorage */; };
+		D8B8FEC729AF8B9A00F8FB7C /* CommentInputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B8FEC629AF8B9A00F8FB7C /* CommentInputTextView.swift */; };
 		D8C1D55B29A63F1600C99ED8 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1D55A29A63F1600C99ED8 /* CommentCell.swift */; };
 		D8C1D55D29A658BC00C99ED8 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1D55C29A658BC00C99ED8 /* Comment.swift */; };
 		D8DF28942991179500662897 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DF28932991179500662897 /* HomeController.swift */; };
@@ -57,6 +58,7 @@
 		D8A0D1E2298E2C05005128D4 /* SharePhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoController.swift; sourceTree = "<group>"; };
 		D8AA3DE929953BD00082C8FC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = InstaFB/Models/User.swift; sourceTree = SOURCE_ROOT; };
 		D8AA3DED29957B810082C8FC /* FirebaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUtils.swift; sourceTree = "<group>"; };
+		D8B8FEC629AF8B9A00F8FB7C /* CommentInputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputTextView.swift; sourceTree = "<group>"; };
 		D8C1D55A29A63F1600C99ED8 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		D8C1D55C29A658BC00C99ED8 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Comment.swift; path = InstaFB/Models/Comment.swift; sourceTree = SOURCE_ROOT; };
 		D8DF28932991179500662897 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				D852028C29A4F34400D76A42 /* CommentsController.swift */,
 				D8C1D55A29A63F1600C99ED8 /* CommentCell.swift */,
 				D8E73C5329AE7D1A00A89F15 /* CommentInputAccessoryView.swift */,
+				D8B8FEC629AF8B9A00F8FB7C /* CommentInputTextView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8B8FEC729AF8B9A00F8FB7C /* CommentInputTextView.swift in Sources */,
 				D8FE181329811F2000400000 /* SignUpController.swift in Sources */,
 				D8E73C6B29AE7FEB00A89F15 /* UserProfilePhotoCell.swift in Sources */,
 				D8DF289629912C0F00662897 /* HomePostCell.swift in Sources */,
